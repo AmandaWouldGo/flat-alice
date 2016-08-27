@@ -4,8 +4,9 @@
 
 	function startGame() {
 	    myGameArea.start();
-	    aliceGamePiece = new component(30, 30, "#63b8ff", 10, 120);
-	    queenGamePiece = new component(75, 75, "red", 10, 10);
+	    aliceGamePiece = new component(30, 30, "#03A9F4", 10, 120);
+	    queenGamePiece = new component(75, 75, "#F44336", 10, 10);
+	    caterGamePiece = new component(20, 20, "#CDDC39", 10, 300);
 	}
 
 	var myGameArea = {
@@ -38,8 +39,11 @@
 		myGameArea.clear();
 		aliceGamePiece.x += 1;
 		queenGamePiece.y += 1;
+		caterGamePiece.x += 1;
+		caterGamePiece.y -= 1;
 		aliceGamePiece.update();
 		queenGamePiece.update();
+		caterGamePiece.update();
 	}
 
 	document.addEventListener("onload", startGame());
