@@ -1,10 +1,11 @@
 (function () {
 
-	var myGamePiece;
+	var aliceGamePiece, queenGamePiece;
 
 	function startGame() {
 	    myGameArea.start();
-	    myGamePiece = new component(30, 30, "#63b8ff", 10, 120);
+	    aliceGamePiece = new component(30, 30, "#63b8ff", 10, 120);
+	    queenGamePiece = new component(75, 75, "red", 10, 10);
 	}
 
 	var myGameArea = {
@@ -35,8 +36,10 @@
 
 	function updateGameArea() {
 		myGameArea.clear();
-		myGamePiece.x += 1;
-		myGamePiece.update();
+		aliceGamePiece.x += 1;
+		queenGamePiece.y += 1;
+		aliceGamePiece.update();
+		queenGamePiece.update();
 	}
 
 	document.addEventListener("onload", startGame());
