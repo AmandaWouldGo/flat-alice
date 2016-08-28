@@ -2,11 +2,11 @@
 
 	var aliceGamePiece;
 	var queenGamePiece = [];
+	var cardGamePiece = [];
 
 	function startGame() {
 	    myGameArea.start();
 	    aliceGamePiece = new component(30, 30, "#03A9F4", 10, 120);
-	    // queenGamePiece = new component(75, 75, "#F44336", 10, 10);
 	    caterGamePiece = new component(20, 20, "#CDDC39", 10, 300);
 	}
 
@@ -84,11 +84,17 @@
 				return;
 			}	
 		}
+		for (i = 0; i < cardGamePiece.length; i += 1) {
+			if (aliceGamePiece.crashWith(cardGamePiece[i])) {
+				myGameArea.stop();
+				return;
+			}	
+		}
 		myGameArea.clear();
 		myGameArea.frameNo += 1;
 		if (myGameArea.frameNo == 1 || everyinterval(650)) {
-			min = 200
-			max = 900
+			min = 200;
+			max = 900;
 			x = myGameArea.canvas.width - Math.floor(Math.random() * (max - min + 1) + min);
 			y = myGameArea.canvas.height;
 			queenGamePiece.push(new component(75, 75, "#F44336", x += 50, y));
@@ -96,6 +102,19 @@
 		for (i = 0; i < queenGamePiece.length; i += 1) {
 			queenGamePiece[i].y -= 1;
 			queenGamePiece[i].update();
+		}
+		if (myGameArea.frameNo == 1 || everyinterval(50)) {
+			minX = 200;
+			maxX = 900;
+			minY = 0;
+			maxY = 540;
+			x = myGameArea.canvas.width - Math.floor(Math.random() * (maxX - minX + 1) + min);
+			y = myGameArea.canvas.height - Math.floor(Math.random() * (maxY - minY + 1) + min);
+			cardGamePiece.push(new component(15, 25, "#FFC107", x += 50, y += 50));
+		}
+		for (i = 0; i < cardGamePiece.length; i += 1) {
+			cardGamePiece[i].y -= 1;
+			cardGamePiece[i].update();
 		}
 		caterGamePiece.x += 1;
 		caterGamePiece.y -= 1;
