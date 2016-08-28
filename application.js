@@ -75,6 +75,10 @@
 			}
 			return crash;
 		}
+		this.grow = function() {
+			this.width = width * 2;
+			this.height = height * 2;
+		}
 	}
 
 	function updateGameArea() {
@@ -82,14 +86,18 @@
 		for (i = 0; i < queenGamePiece.length; i += 1) {
 			if (aliceGamePiece.crashWith(queenGamePiece[i])) {
 				myGameArea.stop();
-				return;
 			}	
 		}
 		for (i = 0; i < cardGamePiece.length; i += 1) {
 			if (aliceGamePiece.crashWith(cardGamePiece[i])) {
 				myGameArea.stop();
-				return;
 			}	
+		}
+		for (i = 0; i < mushroom.length; i += 1) {
+			if (aliceGamePiece.crashWith(mushroom[i])) {
+				aliceGamePiece.grow();
+			}	
+			aliceGamePiece.update();
 		}
 
 		myGameArea.clear();
@@ -131,8 +139,6 @@
 			mushroom.push( (new component(10, 15, "#1ABC9C", x, y)), (new component(20, 10, "#1ABC9C", (x - 5), (y - 5))));
 		}
 		for (i = 0; i < mushroom.length; i += 1) {
-			// mushroom[i].y = 0;
-			// mushroom[i].x = 0;
 			mushroom[i].update();
 		}
 
@@ -149,7 +155,6 @@
 		aliceGamePiece.newPos();
 		aliceGamePiece.update();
 		caterGamePiece.update();
-		// mushroom.update();
 	}
 
 	document.addEventListener("onload", startGame());
