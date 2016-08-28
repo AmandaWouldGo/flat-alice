@@ -87,9 +87,11 @@
 		myGameArea.clear();
 		myGameArea.frameNo += 1;
 		if (myGameArea.frameNo == 1 || everyinterval(650)) {
-			x = myGameArea.canvas.width - 200;
-			y = myGameArea.canvas.height
-			queenGamePiece.push(new component(75, 75, "#F44336", x, y));
+			min = 200
+			max = 900
+			x = myGameArea.canvas.width - Math.floor(Math.random() * (max - min + 1) + min);
+			y = myGameArea.canvas.height;
+			queenGamePiece.push(new component(75, 75, "#F44336", x += 50, y));
 		}
 		for (i = 0; i < queenGamePiece.length; i += 1) {
 			queenGamePiece[i].y -= 1;
