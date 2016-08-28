@@ -12,4 +12,4 @@ Goal: Initially a similar square
 4. Add additional game pieces to rep additional characters(queen: #F44336, cater: #CDDC39, cheshire: #E91E63, hatter: #9C27B0, cards: #FFC107)
 5. Make caterpillar drop resources
 6.        At regular intervals, the cater leaves a small component (maybe a mushroom: #1ABC9C?) 
-7. Make aliceGamePiece grow when touch mushroom 
+7. Make aliceGamePiece grow any time it touches mushroom: 

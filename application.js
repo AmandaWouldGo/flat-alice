@@ -93,12 +93,6 @@
 				myGameArea.stop();
 			}	
 		}
-		for (i = 0; i < mushroom.length; i += 1) {
-			if (aliceGamePiece.crashWith(mushroom[i])) {
-				aliceGamePiece.grow();
-			}	
-			aliceGamePiece.update();
-		}
 
 		myGameArea.clear();
 		myGameArea.frameNo += 1;
@@ -128,7 +122,6 @@
 			cardGamePiece[i].x += 1;
 			cardGamePiece[i].update();
 		}
-
 		if (myGameArea.frameNo == 1 || everyinterval(300)) {
 			minX = 5;
 			maxX = 955;
@@ -140,6 +133,16 @@
 		}
 		for (i = 0; i < mushroom.length; i += 1) {
 			mushroom[i].update();
+			if (aliceGamePiece.crashWith(mushroom[i])) {
+				aliceGamePiece.grow();
+
+				console.log(i);
+				mushroom.splice(i, 1);
+				console.log(i);
+				myGameArea.stop();
+			}	
+			aliceGamePiece.update();
+			console.log(aliceGamePiece);
 		}
 
 		caterGamePiece.x -= 1;
