@@ -6,7 +6,7 @@
 	function startGame() {
 	    myGameArea.start();
 	    aliceGamePiece = new component(30, 30, "#03A9F4", 10, 120);
-	    queenGamePiece = new component(75, 75, "#F44336", 10, 10);
+	    // queenGamePiece = new component(75, 75, "#F44336", 10, 10);
 	    caterGamePiece = new component(20, 20, "#CDDC39", 10, 300);
 	}
 
@@ -77,27 +77,39 @@
 	}
 
 	function updateGameArea() {
-		if (aliceGamePiece.crashWith(queenGamePiece)) {
-			myGameArea.stop();
-		} else {	
-			myGameArea.clear();
-			queenGamePiece.y += 1;
-			caterGamePiece.x += 1;
-			caterGamePiece.y -= 1;
-			aliceGamePiece.speedX = 0;
-			aliceGamePiece.speedY = 0;
+		var x, y;
+		for (i = 0; i < queenGamePiece.length; i += 1) {
+			if (aliceGamePiece.crashWith(queenGamePiece[i])) {
+				myGameArea.stop();
+				return;
+			}	
+		}
+		myGameArea.clear();
+		myGameArea.frameNo += 1;
+		if (myGameArea.frameNo == 1 || everyinterval(650)) {
+			x = myGameArea.canvas.width - 200;
+			y = myGameArea.canvas.height
+			queenGamePiece.push(new component(75, 75, "#F44336", x, y));
+		}
+		for (i = 0; i < queenGamePiece.length; i += 1) {
+			queenGamePiece[i].y -= 1;
+			queenGamePiece[i].update();
+		}
+		caterGamePiece.x += 1;
+		caterGamePiece.y -= 1;
+		aliceGamePiece.speedX = 0;
+		aliceGamePiece.speedY = 0;
 
-			if (myGameArea.keys && myGameArea.keys[37]) { aliceGamePiece.speedX = -1; }
-			if (myGameArea.keys && myGameArea.keys[39]) { aliceGamePiece.speedX = 1; }
-			if (myGameArea.keys && myGameArea.keys[38]) { aliceGamePiece.speedY = -1; }
-			if (myGameArea.keys && myGameArea.keys[40]) { aliceGamePiece.speedY = 1; }
+			if (myGameArea.keys && myGameArea.keys[37]) { aliceGamePiece.speedX = -2; }
+			if (myGameArea.keys && myGameArea.keys[39]) { aliceGamePiece.speedX = 2; }
+			if (myGameArea.keys && myGameArea.keys[38]) { aliceGamePiece.speedY = -2; }
+			if (myGameArea.keys && myGameArea.keys[40]) { aliceGamePiece.speedY = 2; }
 			
 			aliceGamePiece.newPos();
 			aliceGamePiece.update();
-			queenGamePiece.update();
 			caterGamePiece.update();
 		}
-	}
+	// }
 
 	document.addEventListener("onload", startGame());
 } ());
