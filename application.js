@@ -7,7 +7,7 @@
 	function startGame() {
 	    myGameArea.start();
 	    aliceGamePiece = new component(30, 30, "#03A9F4", 10, 120);
-	    caterGamePiece = new component(20, 20, "#CDDC39", 10, 300);
+	    caterGamePiece = new component(35, 15, "#CDDC39", 960, 540);
 	}
 
 	var myGameArea = {
@@ -117,7 +117,7 @@
 			cardGamePiece[i].x += 1;
 			cardGamePiece[i].update();
 		}
-		caterGamePiece.x += 1;
+		caterGamePiece.x -= 1;
 		caterGamePiece.y -= 1;
 		aliceGamePiece.speedX = 0;
 		aliceGamePiece.speedY = 0;
