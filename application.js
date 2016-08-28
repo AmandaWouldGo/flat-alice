@@ -104,16 +104,17 @@
 			queenGamePiece[i].update();
 		}
 		if (myGameArea.frameNo == 1 || everyinterval(50)) {
-			minX = 200;
+			minX = 0;
 			maxX = 900;
-			minY = 0;
-			maxY = 540;
+			minY = 540;
+			maxY = -540;
 			x = myGameArea.canvas.width - Math.floor(Math.random() * (maxX - minX + 1) + min);
 			y = myGameArea.canvas.height - Math.floor(Math.random() * (maxY - minY + 1) + min);
 			cardGamePiece.push(new component(15, 25, "#FFC107", x += 50, y += 50));
 		}
 		for (i = 0; i < cardGamePiece.length; i += 1) {
 			cardGamePiece[i].y -= 1;
+			cardGamePiece[i].x += 1;
 			cardGamePiece[i].update();
 		}
 		caterGamePiece.x += 1;
