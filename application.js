@@ -3,6 +3,7 @@
 	var aliceGamePiece;
 	var queenGamePiece = [];
 	var cardGamePiece = [];
+	var mushroom = [];
 
 	function startGame() {
 	    myGameArea.start();
@@ -90,8 +91,10 @@
 				return;
 			}	
 		}
+
 		myGameArea.clear();
 		myGameArea.frameNo += 1;
+
 		if (myGameArea.frameNo == 1 || everyinterval(650)) {
 			min = 200;
 			max = 900;
@@ -117,21 +120,38 @@
 			cardGamePiece[i].x += 1;
 			cardGamePiece[i].update();
 		}
+
+		if (myGameArea.frameNo == 1 || everyinterval(300)) {
+			minX = 5;
+			maxX = 955;
+			minY = 20;
+			maxY = 535;
+			x = myGameArea.canvas.width - Math.floor(Math.random() * (maxX - minX + 1) + min);
+			y = myGameArea.canvas.height - Math.floor(Math.random() * (maxY - minY + 1) + min);
+			mushroom.push( (new component(10, 15, "#1ABC9C", x, y)), (new component(20, 10, "#1ABC9C", (x - 5), (y - 5))));
+		}
+		for (i = 0; i < mushroom.length; i += 1) {
+			// mushroom[i].y = 0;
+			// mushroom[i].x = 0;
+			mushroom[i].update();
+		}
+
 		caterGamePiece.x -= 1;
 		caterGamePiece.y -= 1;
 		aliceGamePiece.speedX = 0;
 		aliceGamePiece.speedY = 0;
 
-			if (myGameArea.keys && myGameArea.keys[37]) { aliceGamePiece.speedX = -2; }
-			if (myGameArea.keys && myGameArea.keys[39]) { aliceGamePiece.speedX = 2; }
-			if (myGameArea.keys && myGameArea.keys[38]) { aliceGamePiece.speedY = -2; }
-			if (myGameArea.keys && myGameArea.keys[40]) { aliceGamePiece.speedY = 2; }
-			
-			aliceGamePiece.newPos();
-			aliceGamePiece.update();
-			caterGamePiece.update();
-		}
-	// }
+		if (myGameArea.keys && myGameArea.keys[37]) { aliceGamePiece.speedX = -2; }
+		if (myGameArea.keys && myGameArea.keys[39]) { aliceGamePiece.speedX = 2; }
+		if (myGameArea.keys && myGameArea.keys[38]) { aliceGamePiece.speedY = -2; }
+		if (myGameArea.keys && myGameArea.keys[40]) { aliceGamePiece.speedY = 2; }
+		
+		aliceGamePiece.newPos();
+		aliceGamePiece.update();
+		caterGamePiece.update();
+		// mushroom.update();
+	}
 
 	document.addEventListener("onload", startGame());
+
 } ());
