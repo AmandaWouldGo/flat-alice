@@ -8,7 +8,7 @@
 	function startGame() {
 	    myGameArea.start();
 	    aliceGamePiece = new component(30, 30, "#03A9F4", 10, 120);
-	    caterGamePiece = new component(35, 15, "#CDDC39", 960, 540);
+	    caterGamePiece = new component(35, 15, "#CDDC39", 960, 540);   
 	}
 
 	var myGameArea = {
@@ -135,14 +135,9 @@
 			mushroom[i].update();
 			if (aliceGamePiece.crashWith(mushroom[i])) {
 				aliceGamePiece.grow();
-
-				console.log(i);
 				mushroom.splice(i, 1);
-				console.log(i);
-				myGameArea.stop();
 			}	
 			aliceGamePiece.update();
-			console.log(aliceGamePiece);
 		}
 
 		caterGamePiece.x -= 1;
@@ -151,9 +146,9 @@
 		aliceGamePiece.speedY = 0;
 
 		if (myGameArea.keys && myGameArea.keys[37]) { aliceGamePiece.speedX = -2; }
-		if (myGameArea.keys && myGameArea.keys[39]) { aliceGamePiece.speedX = 2; }
+		if (myGameArea.keys && myGameArea.keys[39]) { aliceGamePiece.speedX = 2;  }
 		if (myGameArea.keys && myGameArea.keys[38]) { aliceGamePiece.speedY = -2; }
-		if (myGameArea.keys && myGameArea.keys[40]) { aliceGamePiece.speedY = 2; }
+		if (myGameArea.keys && myGameArea.keys[40]) { aliceGamePiece.speedY = 2;  }
 		
 		aliceGamePiece.newPos();
 		aliceGamePiece.update();
