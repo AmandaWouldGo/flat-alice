@@ -1,0 +1,15 @@
+flat-alice-pseudocode.txt
+
+Inspiration: Alice in wonderland
+
+GamePiece: Initially a square
+
+Goal: Initially a similar square
+
+1. make a canvas to play in with border so I can see it
+2. Add basic game function w/js so that the canvas is ready as a play space
+3. Add 0.0.1 version of a game piece (alice: #03A9F4)
+4. Add additional game pieces to rep additional characters(queen: #F44336, cater: #CDDC39, cheshire: #E91E63, hatter: #9C27B0, cards: #FFC107)
+5. Make caterpillar drop resources
+6.        At regular intervals, the cater leaves a small component (maybe a mushroom: #1ABC9C?) 
+7. Make aliceGamePiece grow any time it touches mushroom: 
