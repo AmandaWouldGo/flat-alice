@@ -93,6 +93,10 @@
 
 	function updateGameArea() {
 		var x, y;
+
+		if (aliceGamePiece.crashWith(goal)) {
+			startGame();
+		}
 		for (i = 0; i < queenGamePiece.length; i += 1) {
 			if (aliceGamePiece.crashWith(queenGamePiece[i])) {
 				myGameArea.stop();
