@@ -1,14 +1,24 @@
 (function () {
 
 	var aliceGamePiece;
+	var caterGamePiece;
 	var queenGamePiece = [];
 	var cardGamePiece = [];
 	var mushroom = [];
+	var goal;
 
 	function startGame() {
 	    myGameArea.start();
 	    aliceGamePiece = new component(30, 30, "#03A9F4", 10, 120);
-	    caterGamePiece = new component(35, 15, "#CDDC39", 960, 540);   
+	    caterGamePiece = new component(35, 15, "#CDDC39", 960, 540);
+
+			minX = 200;
+			maxX = 900;
+			minY = 60;
+			maxY = 540;
+			x = myGameArea.canvas.width - Math.floor(Math.random() * (maxX - minX + 1) + minX);
+			y = myGameArea.canvas.height - Math.floor(Math.random() * (maxY - minY + 1) + minY);
+			goal = new component(60, 60, "#000000", x, y);
 	}
 
 	var myGameArea = {
@@ -86,12 +96,12 @@
 		for (i = 0; i < queenGamePiece.length; i += 1) {
 			if (aliceGamePiece.crashWith(queenGamePiece[i])) {
 				myGameArea.stop();
-			}	
+			}
 		}
 		for (i = 0; i < cardGamePiece.length; i += 1) {
 			if (aliceGamePiece.crashWith(cardGamePiece[i])) {
 				myGameArea.stop();
-			}	
+			}
 		}
 
 		myGameArea.clear();
@@ -136,7 +146,7 @@
 			if (aliceGamePiece.crashWith(mushroom[i])) {
 				aliceGamePiece.grow();
 				mushroom.splice(i, 1);
-			}	
+			}
 			aliceGamePiece.update();
 		}
 
@@ -149,10 +159,11 @@
 		if (myGameArea.keys && myGameArea.keys[39]) { aliceGamePiece.speedX = 2;  }
 		if (myGameArea.keys && myGameArea.keys[38]) { aliceGamePiece.speedY = -2; }
 		if (myGameArea.keys && myGameArea.keys[40]) { aliceGamePiece.speedY = 2;  }
-		
+
 		aliceGamePiece.newPos();
 		aliceGamePiece.update();
 		caterGamePiece.update();
+		goal.update();
 	}
 
 	document.addEventListener("onload", startGame());
